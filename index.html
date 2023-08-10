@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>计算器历史记录</title>
+	<style>
+	</style>
+</head>
+<body>
+	<h1>计算器历史记录</h1>
+	<br>
+	<p id="history" class="history_paragraph"></p>
+	<button onclick="delete_all_history()" id="delete_all_history">清除历史记录</button>
+</body>
+<script>
+	var history_list = JSON.parse(localStorage.getItem("history_localstorage"));
+	if (history_list) {
+		for (let entry of history_list) {
+			document.getElementById("history").innerHTML += "时间: " + entry.time + "<br>计算: " + entry.calculation + "<br><br>";
+		}
+	}
+
+	function delete_all_history() {
+		localStorage.clear();
+		document.getElementById("history").innerHTML = " "
+	}
+</script>
+</html>
